@@ -37,16 +37,20 @@
 <style scoped>
 
     .twoot-item {
-        background-color: #f4f4f9;
-        margin: 0px 10px 15px 10px;
+        background-color: white;
+        margin: 0px 0px 15px 0px;
         padding: 15px;
         border-radius: 5px;
         max-width:100%;
         transition: transform 250ms;
     }
-
+    
     .twoot-user {
         color: #ea899a;
+    }
+
+    .twoot-content{
+        color: #888888;
     }
 
     .user-profile__twoot {

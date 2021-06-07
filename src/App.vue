@@ -15,6 +15,12 @@
 
 
 <style>
+
+    body{
+      background-color: #f4f4f9;
+      margin: 0;
+    }
+
     #app {
       font-family: Avenir, Helvetica, Arial, sans-serif;
       font-size: medium;
