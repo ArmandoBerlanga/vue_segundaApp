@@ -1,33 +1,36 @@
 <template>
-  <div>
-    <form action="" class="create_twoot" @submit.prevent="createNewTwoot()">
-      
-      <label for="newTwoot">
-        <strong>New Twoot</strong>
-        <i :class="{ '--limit': characterCounter > 180 }">({{ characterCounter }}/180)</i>
-      </label>
 
-      <textarea id="newTwoot" rows="6" v-model="content" :class="{ '--limit': characterCounter > 180 }"/>
+    <div>
+        <form action="" class="create_twoot" @submit.prevent="createNewTwoot()">
+        
+        <label for="newTwoot">
+            <strong>New Twoot</strong>
+            <i :class="{ '--limit': characterCounter > 180 }">({{ characterCounter }}/180)</i>
+        </label>
 
-      <div class="twoot_type">
-        <label for="type"><strong>Type </strong></label>
-        <select id="type" v-model="chosenType">
-          <option
-            :value="option.value"
-            v-for="(option, index) in twootTypes"
-            :key="index"
-          >
-            {{ option.name }}
-          </option>
-        </select>
-      </div>
+        <textarea id="newTwoot" rows="6" v-model="content" :class="{ '--limit': characterCounter > 180 }"/>
 
-      <button id="twoot_button">Twoot!</button>
-    </form>
-  </div>
+        <div class="twoot_type">
+            <label for="type"><strong>Type </strong></label>
+            <select id="type" v-model="chosenType">
+            <option
+                :value="option.value"
+                v-for="(option, index) in twootTypes"
+                :key="index"
+            >
+                {{ option.name }}
+            </option>
+            </select>
+        </div>
+
+        <button id="twoot_button">Twoot!</button>
+        </form>
+    </div>
+
 </template>
 
 <script>
+
     export default {
         name: "TwootBar",
         data(){
@@ -58,6 +61,7 @@
             },
         }
     }
+
 </script>
 
 <style scoped>
@@ -112,6 +116,5 @@
         color: #f4f4f9;
         font-size: 1.3em;
     }
-
 
 </style>
