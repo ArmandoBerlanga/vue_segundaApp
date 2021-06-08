@@ -2,14 +2,6 @@
 
     <div class="content">
 
-        <div class="barra-principal">
-            <h1>Twotter</h1>
-
-            <div class="navigation__user" v-if="state.user">
-                @{{ state.user.username }}
-            </div>
-        </div>
-
         <div class="user-profile">
             <div class="user-profile__panel">
                 <h1 class="user-profile__username">@{{ state.user.username }}</h1>
@@ -38,30 +30,23 @@
 <script>
 
     import {reactive, computed} from 'vue'
-    import Twoot from "./Twoot.vue";
-    import TwootBar from "./TwootBar.vue";
+    import {useRoute} from 'vue-router'
+    import Twoot from "../components/Twoot.vue";
+    import TwootBar from "../components/TwootBar.vue";
+    import {users} from "../assets/users"
 
     export default {
         components: { Twoot, TwootBar },
         name: "UserProfile",
 
         setup(){
+
+            const route = useRoute();
+            const userID = computed(() => route.params.userID);
+
             const state = reactive({
                 followers: 0,
-                user: {
-                    id: 1,
-                    username: "armandoBerlanga27",
-                    firstName: "Armando",
-                    lastName: "Berlanga",
-                    email: "armando@gmail.com",
-                    isAdmin: true,
-                    twoots: [
-                    { id: 1, content: "Omg this is amazing" },
-                    { id: 2, content: "Omg this is super mega amazing" },
-                    { id: 3, content: "Como es que se puede hacer esto" },
-                    { id: 4, content: "Omg no puedo poner mas de 180 chars xd" },
-                    ],
-                },                
+                user: users[userID.value-1] || null               
             })
 
             const fullName = computed (() => `${state.user.firstName} ${state.user.lastName}`);
@@ -91,7 +76,8 @@
                 followUser,
                 unfollowUser,
                 toggleFav,
-                addTwoot
+                addTwoot,
+                userID
             }
         },
 
@@ -117,20 +103,19 @@
         width: 90%;
     }
 
-    .user-profile h1{
-
+    .user-profile h1 { 
         margin-bottom: 5px;
     }
 
     .user-profile__panel {
         display: flex;
         flex-direction: column;
-        margin-right: 50px;
+        margin-right: 35px;
         padding: 0px 20px 20px;
         background-color: white;
         border-radius: 5px;
-        /* box-shadow: 4px 4px #888888; */
         height: fit-content;
+    
     }
 
     .user-profile__badge {
@@ -139,22 +124,7 @@
         font-weight: bold;
         border-radius: 5px;
         margin-right: auto;
-        /* margin-bottom: 2px; */
         padding: 1px 3px;
-    }
-
-    .barra-principal{
-        background-color: #ea899a;
-        color: white;
-        font-weight: bold;
-        padding: 10px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-    }
-
-    .barra-principal h1, .navigation__user{
-        margin: 0px 4.5%;
     }
 
 </style>

@@ -1,29 +1,30 @@
 <template>
 
-    <div>
+    <div class="bar-container">
         <form action="" class="create_twoot" @submit.prevent="createNewTwoot()">
         
-        <label for="newTwoot">
-            <strong>New Twoot</strong>
-            <i :class="{ '--limit': counter > 180 }"> ({{ counter }}/180)</i>
-        </label>
+            <label for="newTwoot">
+                <strong>New Twoot</strong>
+                <i :class="{ '--limit': counter > 180 }"> ({{ counter }}/180)</i>
+            </label>
 
-        <textarea id="newTwoot" rows="6" v-model="state.content" :class="{ '--limit': counter > 180 }"/>
+            <textarea id="newTwoot" rows="6" v-model="state.content" :class="{ '--limit': counter > 180 }"/>
 
-        <div class="twoot_type">
-            <label for="type"><strong>Type </strong></label>
-            <select id="type" v-model="state.chosenType">
-            <option
-                :value="option.value"
-                v-for="(option, index) in state.twootTypes"
-                :key="index"
-            >
-                {{ option.name }}
-            </option>
-            </select>
-        </div>
+            <div class="twoot_type">
+                <label for="type"><strong>Type </strong></label>
+                <select id="type" v-model="state.chosenType">
+                <option
+                    :value="option.value"
+                    v-for="(option, index) in state.twootTypes"
+                    :key="index"
+                >
+                    {{ option.name }}
+                </option>
+                </select>
+            </div>
 
-        <button id="twoot_button">Twoot!</button>
+            <button id="twoot_button">Twoot!</button>
+            
         </form>
     </div>
 

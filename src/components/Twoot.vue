@@ -60,7 +60,7 @@
 
     .twoot-item:hover {
         background-color: #f3d9de;
-        transform: scale(1.1, 1.1);
+        transform: scale(1.08, 1.08);
         /* transform: translateY(-7px); */
     }
 

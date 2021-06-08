@@ -1,16 +1,42 @@
 <template>
+    
     <div id="app">
-      <UserProfile />      
+      <div class="barra-principal">
+          <router-link to="/">
+            <h1>Twotter</h1>
+          </router-link>
+            
+            <!-- <div class="navigation__user" v-if="user">
+                @{{ user.username }}
+            </div> -->
+      </div>
+
+        <div class="router_content">
+            <router-view/> 
+        </div>
+
     </div>
+
+
+
 </template>
 
 <script>
-    import UserProfile from "./components/UserProfile";
+  import { useStore } from 'vuex';
+  import { computed } from 'vue';
 
-    export default {
-      name: "App",
-      components: { UserProfile },
-    };
+  export default {
+    name: "App",
+
+    setup(){
+      const store = useStore();
+      const user = computed(() => store.state.User.user);
+
+      return {
+        user
+      }
+    }
+  };
 </script>
 
 
@@ -29,4 +55,30 @@
       display: flex;
       flex-direction: column;
     }
+
+    .barra-principal{
+        background-color: #ea899a;
+        color: white;
+        font-weight: bold;
+        padding: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .barra-principal a, .navigation__user {
+        margin: 0px 4.5%;
+    }
+
+    
+
+    .barra-principal h1{
+      margin: 0;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
 </style>
