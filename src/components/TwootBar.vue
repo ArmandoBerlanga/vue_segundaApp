@@ -5,17 +5,17 @@
         
         <label for="newTwoot">
             <strong>New Twoot</strong>
-            <i :class="{ '--limit': characterCounter > 180 }">({{ characterCounter }}/180)</i>
+            <i :class="{ '--limit': counter > 180 }"> ({{ counter }}/180)</i>
         </label>
 
-        <textarea id="newTwoot" rows="6" v-model="content" :class="{ '--limit': characterCounter > 180 }"/>
+        <textarea id="newTwoot" rows="6" v-model="state.content" :class="{ '--limit': counter > 180 }"/>
 
         <div class="twoot_type">
             <label for="type"><strong>Type </strong></label>
-            <select id="type" v-model="chosenType">
+            <select id="type" v-model="state.chosenType">
             <option
                 :value="option.value"
-                v-for="(option, index) in twootTypes"
+                v-for="(option, index) in state.twootTypes"
                 :key="index"
             >
                 {{ option.name }}
@@ -31,10 +31,13 @@
 
 <script>
 
+    import {reactive, computed} from 'vue'
+
     export default {
         name: "TwootBar",
-        data(){
-            return {
+        
+        setup(props, context){
+            const state = reactive ({
                 twootTypes: [
                     { value: "draft", name: "Draft" },
                     { value: "instant", name: "Instant Twoot" },
@@ -42,26 +45,26 @@
 
                 content: "",
                 chosenType: "draft",
-            }
-        },
+            })
 
-        methods:{
-            createNewTwoot() {
-                if (this.content && this.chosenType != "draft" && this.characterCounter<=180)
+            const counter = computed(() => state.content.length);
+
+            function createNewTwoot() {
+                if (state.content && state.chosenType != "draft" && state.content.length<=180)
                     {
-                        this.$emit("create", this.content);
-                        this.content = "";
+                        context.emit("create", state.content);
+                        state.content = "";
                     }
-            },
-        },
-
-        computed:{
-            characterCounter(){
-                return this.content.length;
-            },
+            }
+        
+            return {
+                state,
+                counter,
+                createNewTwoot
+            }
         }
-    }
-
+    }   
+    
 </script>
 
 <style scoped>
