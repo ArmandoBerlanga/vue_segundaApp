@@ -115,7 +115,6 @@
         background-color: white;
         border-radius: 5px;
         height: fit-content;
-    
     }
 
     .user-profile__badge {

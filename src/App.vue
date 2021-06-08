@@ -70,10 +70,13 @@
         margin: 0px 4.5%;
     }
 
-    
-
-    .barra-principal h1{
+    .barra-principal h1 {
       margin: 0;
+      transition: transform 250ms;
+    }
+
+    .barra-principal h1:active {
+      transform: scale(1.1, 1.1);
     }
 
     a {
