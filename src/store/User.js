@@ -1,7 +1,6 @@
-import { createStore } from 'vuex'
-import { UserModule } from './User'
+export const UserModule = {
+  nameSpaced: true,
 
-export default createStore({
   state: {
     user: null
   },
@@ -17,8 +16,4 @@ export default createStore({
       commit('SET_USER', user);
     }
   },
-  
-  modules: {
-    User: UserModule
-  }
-})
+}

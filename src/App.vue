@@ -6,9 +6,9 @@
             <h1>Twotter</h1>
           </router-link>
             
-            <!-- <div class="navigation__user" v-if="user">
+            <div class="navigation__user" v-if="user">
                 @{{ user.username }}
-            </div> -->
+            </div>
       </div>
 
         <div class="router_content">
@@ -16,8 +16,6 @@
         </div>
 
     </div>
-
-
 
 </template>
 
@@ -30,7 +28,7 @@
 
     setup(){
       const store = useStore();
-      const user = computed(() => store.state.User.user);
+      const user = computed(() => store.state.user);
 
       return {
         user
