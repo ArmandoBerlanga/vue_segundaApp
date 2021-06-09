@@ -96,7 +96,7 @@
         color: red;
     }
 
-        button {
+    button {
         background-color: white;
         border-radius: 5px;
         border: 1px solid #ea899a;
