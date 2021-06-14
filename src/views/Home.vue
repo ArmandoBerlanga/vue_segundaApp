@@ -2,9 +2,9 @@
 
   <div id="home">
     <h1>Pagina de INICIO</h1>
-    <h2>Selecciona al usuario al cual deseas acceder</h2>
     <div class="home-items">
       <div class="user-list">
+        <h2>Selecciona al usuario al cual deseas acceder</h2>
         <router-link
           v-for="user in users"
           :to="{ name: 'UserProfile', params: { userID: user.id } }"
@@ -46,7 +46,6 @@
 
     #home {
       margin: 0px 5%;
-      
     }
 
     .home-items {

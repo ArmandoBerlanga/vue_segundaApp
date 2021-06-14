@@ -1,24 +1,23 @@
 <template>
 
     <div id="add-user">
-        <form @sumbit.prevent="agregarUsuario()">
+        <form @submit.prevent="agregarUsuario()">
 
             <h2>Agregar usuario</h2>
 
             <label for="user">User</label>
-            <textarea name="user" rows="1" placeholder="armandoBerlanga27"></textarea>
-
+            <textarea name="user" rows="1" placeholder="armandoBerlanga27" v-model="state.username"/>
+      
             <label for="nombre">Nombre</label>
-            <textarea name="nombre" rows="1" placeholder="Armando"></textarea>
+            <textarea name="nombre" rows="1" placeholder="Armando" v-model="state.nombre"/>
 
             <label for="apellido">Apellido</label>
-            <textarea name="apellido" rows="1" placeholder="Berlanga"></textarea>
+            <textarea name="apellido" rows="1" placeholder="Berlanga" v-model="state.apellido"/>
 
             <label for="mail">Correo</label>
-            <textarea name="mail" rows="1" placeholder="Jose.berlangam@udem.edu"></textarea>
+            <textarea name="mail" rows="1" placeholder="Jose.berlangam@udem.edu" v-model="state.correo"/>
 
             <button>Agregar</button>
-
         </form>
     </div>
     
@@ -26,10 +25,47 @@
 
 
 <script>
-
+    import {reactive} from 'vue'
+    import {users} from '../assets/users'
+  
     export default ({
         setup() {
             
+            const state = reactive ({
+                username: '',
+                nombre: '',
+                apellido: '',
+                correo: '',
+            })
+
+            function agregarUsuario () {
+                if (state.username && state.nombre && state.apellido && state.correo) {
+                    const userJs = {
+                        "id": users.length + 1,
+                        "username": state.username,
+                        "firstName": state.nombre,
+                        "lastName": state.apellido,
+                        "email": state.correo,
+                        "isAdmin": false,
+                        "twoots": [],
+                    };
+
+                    users.push(userJs);
+
+                    state.username = ''
+                    state.nombre = ''
+                    state.apellido = ''
+                    state.correo = ''
+
+                    return userJs;
+                }
+
+            }
+
+            return {
+                state,
+                agregarUsuario
+            }
         },
     })
 
